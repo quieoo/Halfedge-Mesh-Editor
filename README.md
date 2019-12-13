@@ -76,7 +76,7 @@ QEM simplify
 -
 Algorithm is from [Surface Simplification Using Quadric Error Metrics](https://www.cs.cmu.edu/~./garland/Papers/quadrics.pdf) by Michael Garland and Paul S. Heckbert
 
-First,Compute the Qmatrices for all the initial vertices.
+* First,Compute the Qmatrices for all the initial vertices.
 
 As defining error of vertex to the sum of squared distances to its connected faces,we get
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula1.png)
@@ -85,13 +85,36 @@ since that,we can simply get p by compute its normal vector as [a,b,c] plus with
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula2.png)
 With the derivation above,we can now get Q matrix by sum all of its connnected face's Kp matrix,and Kp matrix is p*p^t.
 
-Second,select all pair of vertexs(here we chose those pair connected to same edge),and compute a noewposition Vbar and Qbar for it.
+* Second,select all pair of vertexs(here we chose those pair connected to same edge),and compute a noewposition Vbar and Qbar for it.
 
 We would like to choose a Vbar whose quadric error is smallest.since cost of collapse equal to Vbar*Qbar*Vbar^T,we only need to differentiate Qbar.So,we can get Vbar:
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula3.png)
+
 Than,what we need to do is to get Qbar.Qbar=(Q1+Q2)/2,where Q1,Q2 are two of linked vertex.QuardError.
 
-Third,put all of edges eith cost in a priority queue,where the edge with smaller cost in top.
+* Third,put all of edges eith cost in a priority queue,where the edge with smaller cost in top.
 
-Last,every time we choose the first edge from pq,and call edge._halfedge->collapse().
-But,there is one thing to be noted,only the edge with pair of vertexs whose shared number of  other vertex is 2 are safe.Others may cause the change of topologic 
+* Last,every time we choose the first edge from pq,and call edge._halfedge->collapse().
+But,there is one thing to be noted,only the edge with pair of vertexs whose shared number of  other vertex is 2 are safe.Otherwise it may cause the change of topological structure.
+
+Edge Collapse
+-
+
+* 1.Set outside halfedges pointing towards two vertices to new vertex . And set vertex._halfedge to one of those outside halfedges.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse1.png)
+
+* 2.Set the outside four halfedge's  _opposite to each other.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse2.png)
+
+* 3.Make sure the  edge' _halfedge pointer point to correct halfedge
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse3.png)
+
+* 4.Update _halfedge ppointer for two wing-vertexs.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse4.png)
+
+* 5.Delete faces/edges/vertexs/halfedges.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse5.png)
+
+
+PS:In my implementation,for two vertexs of collapsing edge, i choose the one _halfedge point to update the position and  quard error to be new vertex,and delete another one.So as to four edges on collaping two faces. 
+
