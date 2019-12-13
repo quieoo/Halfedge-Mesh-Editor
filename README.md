@@ -17,4 +17,9 @@ For now,only sportted obj file with "v" and "f".
 halfedge
 -
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/halfedge.png)
-A classic halfedge structure is like the picture above sys.
+A classic halfedge structure is like the picture above sys,which is from [OpenMesh](https://www.openmesh.org/media/Documentations/OpenMesh-6.3-Documentation/a00010.html)
+But there is one thing to be noted.in my implementation ,all vertex pointer in halfedge class point to the vertex which point to it.
+There are several methods need to be noted:
+>halfedge::CWgetNext.Find the next halfedge in clock wise ,which point to the same vertex
+>halfedge::RCWgetNext.Find the next halfedge in reverse clock wise ,which point to the same vertex
+
