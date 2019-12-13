@@ -44,3 +44,19 @@ There are several methods need to be noted:
 >booll edge::isBoundary().Return if _halfedge->isBoundary().
 
 >bool vertex::isBoundary().Return if FindAllConnnectvertex()==3.
+
+Load
+-
+Build a halfedgemesh from *.obj file.
+Those file and text process method are from [tinyobjloader](https://github.com/syoyo/tinyobjloader).And i only chose to take "v" and "f" data from a obj file.
+For "v"line,build a vertex with position and index ,and push back to vertexs list.
+For "f"line,call createface(long* index),with tree vertex index.
+And finally ,call halfedge_opposite(),to cretea opposite pointer for all halfedge.
+
+loop subdivide
+-
+> First,iterate through mesh::vertexs ,and get its new position.store new position in vertex.newposition.
+>>If vertex.isboundary()
+>>>newposition=3/4v+1/8(v1+v2),while v1,v2 share the same edge with v
+>>else
+>>>newposition=(1-n@)v+@(v1+v2+v3....).@is computed by calculateAlpha,and v1,v2,...are vertexs who connect with v.
