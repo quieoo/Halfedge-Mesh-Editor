@@ -69,4 +69,19 @@ loop subdivide
 >>else
 >>>newpos=3/8(v0+v1)+1/8(v2+v3).v2 and v3 are two of another point int two faces connect with this edge
 
+>Third,Iterate through mesh.faces.create four new faces for every one.
+>>for three vertex.newposition,and three edge.newvertex,call createfaces().
+
+QEM simplify
+-
+Algorithm is from [Surface Simplification Using Quadric Error Metrics](https://www.cs.cmu.edu/~./garland/Papers/quadrics.pdf) by Michael Garland and Paul S. Heckbert
+
+First,Compute the Qmatrices for all the initial vertices.
+
+As defining error of vertex to the sum of squared distances to its connected faces,we get
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula1.png)
+where p=[a,b,c,d] represent the face defined by the equation ax+by+cz+d=0 and a^2+b^2+c^2=1.
+since that,we can simply get p by compute its normal vector as [a,b,c] plus with normal vector multiply one of vexter.position() as d.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula2.png)
+With the derivation above,we can now get Q matrix by sum all of its connnected face's Kp matrix,and Kp matrix is p*p^t.
 
