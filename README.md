@@ -102,18 +102,23 @@ Edge Collapse
 -
 
 * 1.Set outside halfedges pointing towards two vertices to new vertex . And set vertex._halfedge to one of those outside halfedges.
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse2.png)
 
 * 2.Set the outside four halfedge's  _opposite to each other.
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse3.png)
 
 * 3.Make sure the  edge' _halfedge pointer point to correct halfedge
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse4.png)
 
 * 4.Update _halfedge ppointer for two wing-vertexs.
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse5.png)
 
 * 5.Delete faces/edges/vertexs/halfedges.
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse6.png)
 
 
