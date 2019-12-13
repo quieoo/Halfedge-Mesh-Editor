@@ -87,7 +87,8 @@ With the derivation above,we can now get Q matrix by sum all of its connnected f
 
 * Second,select all pair of vertexs(here we chose those pair connected to same edge),and compute a noewposition Vbar and Qbar for it.
 
-We would like to choose a Vbar whose quadric error is smallest.since cost of collapse equal to Vbar*Qbar*Vbar^T,we only need to differentiate Qbar.So,we can get Vbar:
+We would like to choose a Vbar whose quadric error is smallest.since cost of collapse equal to Vbar*Qbar*Vbar^T,we only need to differentiate Qbar.So,we can get Vbar by
+
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula3.png)
 
 Than,what we need to do is to get Qbar.Qbar=(Q1+Q2)/2,where Q1,Q2 are two of linked vertex.QuardError.
@@ -101,19 +102,19 @@ Edge Collapse
 -
 
 * 1.Set outside halfedges pointing towards two vertices to new vertex . And set vertex._halfedge to one of those outside halfedges.
-![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse1.png)
-
-* 2.Set the outside four halfedge's  _opposite to each other.
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse2.png)
 
-* 3.Make sure the  edge' _halfedge pointer point to correct halfedge
+* 2.Set the outside four halfedge's  _opposite to each other.
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse3.png)
 
-* 4.Update _halfedge ppointer for two wing-vertexs.
+* 3.Make sure the  edge' _halfedge pointer point to correct halfedge
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse4.png)
 
-* 5.Delete faces/edges/vertexs/halfedges.
+* 4.Update _halfedge ppointer for two wing-vertexs.
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse5.png)
+
+* 5.Delete faces/edges/vertexs/halfedges.
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/collapse6.png)
 
 
 PS:In my implementation,for two vertexs of collapsing edge, i choose the one _halfedge point to update the position and  quard error to be new vertex,and delete another one.So as to four edges on collaping two faces. 
