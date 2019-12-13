@@ -85,3 +85,13 @@ since that,we can simply get p by compute its normal vector as [a,b,c] plus with
 ![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula2.png)
 With the derivation above,we can now get Q matrix by sum all of its connnected face's Kp matrix,and Kp matrix is p*p^t.
 
+Second,select all pair of vertexs(here we chose those pair connected to same edge),and compute a noewposition Vbar and Qbar for it.
+
+We would like to choose a Vbar whose quadric error is smallest.since cost of collapse equal to Vbar*Qbar*Vbar^T,we only need to differentiate Qbar.So,we can get Vbar:
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/formula3.png)
+Than,what we need to do is to get Qbar.Qbar=(Q1+Q2)/2,where Q1,Q2 are two of linked vertex.QuardError.
+
+Third,put all of edges eith cost in a priority queue,where the edge with smaller cost in top.
+
+Last,every time we choose the first edge from pq,and call edge._halfedge->collapse().
+But,there is one thing to be noted,only the edge with pair of vertexs whose shared number of  other vertex is 2 are safe.Others may cause the change of topologic 
