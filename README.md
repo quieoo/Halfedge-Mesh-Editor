@@ -58,5 +58,15 @@ loop subdivide
 > First,iterate through mesh::vertexs ,and get its new position.store new position in vertex.newposition.
 >>If vertex.isboundary()
 >>>newposition=3/4v+1/8(v1+v2),while v1,v2 share the same edge with v
+
 >>else
 >>>newposition=(1-n@)v+@(v1+v2+v3....).@is computed by calculateAlpha,and v1,v2,...are vertexs who connect with v.
+
+>Secound Iterate through mesh::edges,generate newvertex for every edge.
+>>if edge.isboundary()
+>>>newpos=1/2(v0+v1).v0,v1 are two point for edge.
+
+>>else
+>>>newpos=3/8(v0+v1)+1/8(v2+v3).v2 and v3 are two of another point int two faces connect with this edge
+
+
