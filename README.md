@@ -21,13 +21,26 @@ A classic halfedge structure is like the picture above sys,which is from [OpenMe
 
 But there is one thing to be noted.in my implementation ,all vertex pointer in halfedge class point to the vertex which point to it.
 There are several methods need to be noted:
->>halfedge* halfedge::CWgetNext().Find the next halfedge in clock wise ,which point to the same vertex.
+>halfedge* halfedge::CWgetNext().Find the next halfedge in clock wise ,which point to the same vertex.
 
->>halfedge* halfedge::RCWgetNext().Find the next halfedge in reverse clock wise ,which point to the same vertex.
+>halfedge* halfedge::RCWgetNext().Find the next halfedge in reverse clock wise ,which point to the same vertex.
 
->>void halfedge::collapse().collapse the edge halgedge point to.It will be introduced later.
+>void halfedge::collapse().collapse the edge halgedge point to.It will be introduced later.
 
->>void halfedgemesh::createfaces(long* index).According to the vertex index,create a face,three edges(unique),three halfedges, and build their pointer to each other.
+>void halfedgemesh::createfaces(long* index).According to the vertex index,create a face,three edges(unique),three halfedges, and build their pointer to each other.
 
->>void halfedgemesh::halfedge_opposite().For all the halfedge in mesh,fill their _opposite pointer.
+>void halfedgemesh::halfedge_opposite().For all the halfedge in mesh,fill their _opposite pointer.
 
+>vector<face*> vertex::FindAllConnectface().
+
+>vector<vertex*> vertex::FindAllConnectvertexs().
+
+>vector<edge*> vertex::FindAllLinkEdges().
+
+>vector<halfedge*> vertex::FindAllLinkHalfEdges()
+
+>bool halfege::isBoundary().Return if _opposite is NULL.
+
+>booll edge::isBoundary().Return if _halfedge->isBoundary().
+
+>bool vertex::isBoundary().Return if FindAllConnnectvertex()==3.
