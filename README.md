@@ -4,15 +4,17 @@ As for now,this app is very simple,inefficient,and very possiblly wrong
 
 usage
 -
-First，make sure GLFW is prepared,or rendering may not work.
+First of all，make sure GLFW is prepared,or rendering may not work.
+Gnerate executable file.
+
 ```
 g++ -o main glad.c stb_image.cpp main.cpp -lglfw3 -lpthread -lX11 -ldl -lGLEW
 ```
-After that,main is generated.
+After that,main is generated.Run it with a obj file.
 ```
 ./main input.obj
 ```
-For now,only sportted obj file with "v" and "f".
+For now,it only sportted obj file with "v" and "f".
 
 halfedge
 -
