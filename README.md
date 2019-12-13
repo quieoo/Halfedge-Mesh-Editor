@@ -16,3 +16,5 @@ For now,only sportted obj file with "v" and "f".
 
 halfedge
 -
+![](https://github.com/quieoo/Halfedge-Mesh-Editor/blob/master/halfedge.png)
+A classic halfedge structure is like the picture above sys.
